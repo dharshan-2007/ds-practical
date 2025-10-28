@@ -12,11 +12,11 @@ void merge(int arr[], int left, int mid, int right)
     }
     for (j = 0; j < n2; j++)
     {
-        rightarray[j] = arr[mid - 1 + i];
+        rightarray[j] = arr[mid + 1 + j];
     }
     i = 0;
     j = 0;
-    k = mid;
+    k = left;
     while (i < n1 && j < n2)
     {
         if (leftarray[i] <= rightarray[j])
@@ -26,7 +26,7 @@ void merge(int arr[], int left, int mid, int right)
         }
         else
         {
-            arr[k] = rightarray[k];
+            arr[k] = rightarray[j];
             j++;
         }
         k++;
@@ -37,6 +37,28 @@ void merge(int arr[], int left, int mid, int right)
     }
     while (j < n2)
     {
-        arr[k++]=rightarray[j++];
+        arr[k++] = rightarray[j++];
+    }
+}
+
+void mergesort(int arr[], int left, int right)
+{
+    if (left < right)
+    {
+        int mid = (left + right) / 2;
+        mergesort(arr, left, mid);
+        mergesort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
+
+void main()
+{
+    int arr[] = {20, 50, 10, 30, 5, 70, 50};
+    int left = 0, right = sizeof(arr) / sizeof(arr[0]) - 1;
+    mergesort(arr, left, right);
+    for (int i = 0; i < right + 1; i++)
+    {
+        printf("%d ", arr[i]);
     }
 }
