@@ -1,6 +1,4 @@
-//
-// Created by msdha on 28-10-2025.
-//
+
 #include<stdio.h>
 #include<stdlib.h>
 void main() {
